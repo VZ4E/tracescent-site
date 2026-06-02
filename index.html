@@ -222,6 +222,14 @@
   }
   footer{text-align:center;padding:30px 0 50px;color:#5e5a53;font-size:12px}
   footer .mark{font-size:12px;letter-spacing:.4em;margin-bottom:10px;display:block;color:#7a766e}
+
+  /* PHOTOS */
+  .hero-photo{width:auto;max-height:330px;border-radius:16px;display:block;margin:6px auto 0;
+    box-shadow:0 30px 70px -30px rgba(0,0,0,.95);animation:float 6s ease-in-out infinite}
+  .simg{width:62px;height:62px;border-radius:10px;object-fit:cover;flex:none}
+  .gallery{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}
+  .gallery img{width:100%;height:100%;object-fit:cover;border-radius:12px;display:block;border:1px solid var(--line)}
+  .gallery img.wide{grid-column:1 / -1;max-height:300px}
 </style>
 </head>
 <body>
@@ -235,22 +243,7 @@
     <p class="sub">Spray cologne dies by lunch. <b>TRACE is an oil — not a spray.</b> One swipe lasts 10–12 hours.</p>
 
     <div class="bottle-stage">
-      <svg class="bottle" viewBox="0 0 120 230" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="TRACE rollerball bottle">
-        <rect x="46" y="4" width="28" height="20" rx="3" fill="#1a1a1d" stroke="rgba(244,241,234,.18)"/>
-        <rect x="50" y="22" width="20" height="10" fill="#0e0e10"/>
-        <rect x="30" y="32" width="60" height="180" rx="14" fill="#121214" stroke="rgba(244,241,234,.16)"/>
-        <rect x="30" y="120" width="60" height="92" rx="14" fill="url(#oil)"/>
-        <rect x="38" y="64" width="44" height="56" rx="7" fill="#0a0a0b" stroke="rgba(244,241,234,.10)"/>
-        <text x="60" y="90" text-anchor="middle" fill="#f4f1ea" font-size="11" font-weight="800" letter-spacing="2" font-family="Helvetica">TRACE</text>
-        <text x="60" y="104" text-anchor="middle" fill="#9a958c" font-size="6" letter-spacing="1.5" font-family="Helvetica">OIL · 10ML</text>
-        <ellipse cx="60" cy="120" rx="30" ry="5" fill="rgba(124,31,43,.4)"/>
-        <defs>
-          <linearGradient id="oil" x1="0" y1="120" x2="0" y2="212" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#7c1f2b" stop-opacity=".55"/>
-            <stop offset="1" stop-color="#3a0d14" stop-opacity=".85"/>
-          </linearGradient>
-        </defs>
-      </svg>
+      <img class="hero-photo" src="/site-hero.jpg" alt="TRACE Midnight men's cologne oil rollerball on black slate" />
     </div>
 
     <div class="form-card">
@@ -270,10 +263,6 @@
       </div>
     </div>
 
-    <div class="proof">
-      <div class="dots"><span class="av"></span><span class="av"></span><span class="av"></span><span class="av"></span><span class="av"></span></div>
-      <b id="count">800+</b> on the waitlist and climbing
-    </div>
   </div>
 </header>
 
@@ -314,16 +303,26 @@
     <div class="kicker">The first three</div>
     <h3>Pick your hours.</h3>
     <div class="scent">
-      <div class="swatch s1"></div>
+      <img class="simg" src="/site-midnight.jpg" alt="TRACE Midnight cologne oil" loading="lazy" />
       <div><div class="nm">TRACE / Midnight</div><div class="ds">Dark, spicy-sweet. The going-out scent.</div></div>
     </div>
     <div class="scent">
-      <div class="swatch s2"></div>
+      <img class="simg" src="/site-daylight.jpg" alt="TRACE Daylight cologne oil" loading="lazy" />
       <div><div class="nm">TRACE / Daylight</div><div class="ds">Fresh citrus-woods. Clean, every day.</div></div>
     </div>
     <div class="scent">
-      <div class="swatch s3"></div>
+      <img class="simg" src="/site-afterhours.jpg" alt="TRACE After Hours cologne oil" loading="lazy" />
       <div><div class="nm">TRACE / After Hours</div><div class="ds">Warm amber + vanilla. Close-up, late.</div></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="kicker">The look</div>
+    <h3>Built for the dark hours.</h3>
+    <div class="gallery">
+      <img class="wide" src="/site-mood.jpg" alt="TRACE cologne oil — still on you at midnight" loading="lazy" />
+      <img src="/site-edc.jpg" alt="TRACE rollerball in everyday carry" loading="lazy" />
+      <img src="/site-trio.jpg" alt="TRACE founding trio — Midnight, Daylight, After Hours" loading="lazy" />
     </div>
   </section>
 
@@ -347,9 +346,6 @@
   // It looks like: https://sheetdb.io/api/v1/xxxxxxxxxxxxx
   var SHEETDB_ENDPOINT = "https://sheetdb.io/api/v1/pnh49otedymsj";
 
-  var startCount = 812;
-  document.getElementById('count').textContent = startCount + '+';
-
   document.getElementById('waitlist').addEventListener('submit', function(e){
     e.preventDefault();
     var email = document.getElementById('email').value.trim();
@@ -361,7 +357,6 @@
     function showSuccess(){
       document.getElementById('formView').style.display = 'none';
       document.getElementById('success').classList.add('show');
-      document.getElementById('count').textContent = (startCount + 1) + '+';
     }
 
     if(!SHEETDB_ENDPOINT){ showSuccess(); return; }  // demo mode until endpoint is set
